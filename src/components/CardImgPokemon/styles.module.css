@@ -1,16 +1,27 @@
 .container {
   display: flex;
   align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding: 16px;
   background-color: white;
   border-radius: 16px !important;
-  width: 256px;
-  min-height: 288px;
+  max-width: 280px;
+  height: 290px;
   box-shadow: rgb(86 108 214 / 0.15) 0px 8px 24px !important;
 }
+.imagePrimary {
+  width: 150px;
+}
+.imageSecondary {
+  margin-top: 16px;
+  object-fit: cover;
+  width: auto;
+}
 .card-body {
+  overflow-y: hidden;
+  display: flex;
   padding: 8px;
   align-items: center;
-  gap: 16px;
+}
+.imagesSecondaryContainer {
+  display: flex;
 }

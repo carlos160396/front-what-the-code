@@ -38,9 +38,6 @@ export async function getServerSideProps({ query }: any) {
   const getArrayTypePokemon = [];
   let arrayNewInfo: any[] = [];
   for (let index = 1; index <= data.results.length; index++) {
-    console.log(
-      `https://pokeapi.co/api/v2/pokemon-form/${data.results[index - 1].name}`
-    );
     getArrayTypePokemon.push(
       `https://pokeapi.co/api/v2/pokemon-form/${data.results[index - 1].name}`
     );

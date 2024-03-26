@@ -1,11 +1,20 @@
 import { Button, Input } from "@nextui-org/react";
 import Image from "next/image";
 import styles from "./styles.module.css";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-const Search = () => {
+interface Props {
+  initialValue?: string;
+}
+const Search = ({ initialValue = "" }: Props) => {
+  const [text, setText] = useState(initialValue);
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <Input
+        value={text}
+        onValueChange={(text) => setText(text)}
         radius="full"
         classNames={{
           innerWrapper: ["bg-white"],
@@ -16,7 +25,11 @@ const Search = () => {
         }}
         placeholder="Search"
       />
-      <Button className={styles.button}>
+
+      <Button
+        className={styles.button}
+        onPress={() => router.push(`/pokemons/pokemonDetail/${text}`)}
+      >
         <Image
           alt="Button search"
           src="/assets/icons/Search.svg"

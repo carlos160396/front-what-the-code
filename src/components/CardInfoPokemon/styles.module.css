@@ -6,6 +6,16 @@
   box-shadow: rgb(86 108 214 / 0.15) 0px 8px 24px !important;
   border-radius: 16px !important;
 }
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.badgets {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
 .title {
   font-size: 36px;
   line-height: 40px;
@@ -18,9 +28,34 @@
 }
 .container-image {
   display: flex;
-  gap: 20px;
-  margin-top: 8px;
+}
+.images {
+  width: 100px;
 }
 .description {
   color: #40415e;
+}
+.badge-Fire {
+  background-color: #f39d40;
+  color: white !important;
+}
+.badge-Grass {
+  color: white !important;
+  background-color: #64a30a;
+}
+.badge-Poison {
+  color: white !important;
+  background-color: #9267af;
+}
+.badge-Flying {
+  color: white !important;
+  background-color: #abc8ff;
+}
+.badge-Electric {
+  color: white !important;
+  background-color: #ffe100;
+}
+.badge-Ground {
+  color: white !important;
+  background-color: #a35615;
 }

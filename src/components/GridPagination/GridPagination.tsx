@@ -4,6 +4,7 @@ import { CardPokemon, Search } from "@/components";
 import { Button } from "@nextui-org/react";
 import usePagination from "@/hooks/usePagination";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { titleCase } from "@/helpers/textTransform";
 
 interface Props {
   pokemons: Pokemons;
@@ -32,14 +33,7 @@ const GridPagination = ({ pokemons }: Props) => {
 
     return newTypes;
   };
-  function titleCase(text: string) {
-    var splitStr = text.toLowerCase().split(" ");
-    for (var i = 0; i < splitStr.length; i++) {
-      splitStr[i] =
-        splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-    }
-    return splitStr.join(" ");
-  }
+
   return (
     <section className={styles.container}>
       <div className={styles.search}>

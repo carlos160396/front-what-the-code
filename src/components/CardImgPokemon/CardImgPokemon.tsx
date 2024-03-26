@@ -1,16 +1,41 @@
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Card, CardBody, CardFooter } from "@nextui-org/react";
 import styles from "./styles.module.css";
+import Image from "next/image";
 
-const CardImgPokemon = () => {
+interface Props {
+  imagePrimary: string | undefined;
+  imageFront: string | undefined;
+  imageBack: string | undefined;
+}
+
+const CardImgPokemon = ({ imagePrimary, imageFront, imageBack }: Props) => {
   return (
-    <Card isPressable className={styles.container}>
+    <Card className={styles.container}>
       <CardBody className={styles["card-body"]}>
-        <Image alt="Card background" className="" src="/next.svg" width={150} />
+        <Image
+          alt="Card background"
+          className={styles.imagePrimary}
+          src={imagePrimary ?? ""}
+          width={200}
+          height={200}
+        />
+        <div className={styles.imagesSecondaryContainer}>
+          <Image
+            alt="Card background"
+            className={styles.imageSecondary}
+            src={imageFront ?? ""}
+            width={200}
+            height={200}
+          />
+          <Image
+            alt="Card background"
+            className={styles.imageSecondary}
+            src={imageBack ?? ""}
+            width={200}
+            height={200}
+          />
+        </div>
       </CardBody>
-      <CardFooter>
-        <Image alt="Card background" className="" src="/next.svg" width={150} />
-        <Image alt="Card background" className="" src="/next.svg" width={150} />
-      </CardFooter>
     </Card>
   );
 };

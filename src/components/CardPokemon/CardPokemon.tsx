@@ -20,7 +20,7 @@ interface Props {
 
 const CardPokemon = ({ title, subtitle, icon, types }: Props) => {
   return (
-    <Link href={"/pokemons/pokemonDetail/1"}>
+    <Link href={`/pokemons/pokemonDetail/${subtitle}`}>
       <Card isPressable className={styles.container}>
         <CardHeader className={styles["card-header"]}>
           <h3 className={styles.title}>{title}</h3>
