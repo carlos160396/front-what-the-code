@@ -24,15 +24,15 @@ const CardImgPokemon = ({ imagePrimary, imageFront, imageBack }: Props) => {
             alt="Card background"
             className={styles.imageSecondary}
             src={imageFront ?? ""}
-            width={200}
-            height={200}
+            width={100}
+            height={100}
           />
           <Image
             alt="Card background"
             className={styles.imageSecondary}
             src={imageBack ?? ""}
-            width={200}
-            height={200}
+            width={100}
+            height={100}
           />
         </div>
       </CardBody>

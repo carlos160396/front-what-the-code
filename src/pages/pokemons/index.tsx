@@ -10,7 +10,7 @@ import DashBoardLayout from "./layout";
 import { Pokemons } from "@/interface/Pokemon";
 import { InferGetServerSidePropsType } from "next";
 import styles from "./styles.module.css";
-import { PokemonForm } from "@/interface/PokemonForm";
+import { PokemonTypes } from "@/interface/PokemonTypes";
 
 const DashboardPage = ({
   pokemons,
@@ -39,17 +39,20 @@ export async function getServerSideProps({ query }: any) {
   let arrayNewInfo: any[] = [];
   for (let index = 1; index <= data.results.length; index++) {
     getArrayTypePokemon.push(
-      `https://pokeapi.co/api/v2/pokemon-form/${data.results[index - 1].name}`
+      `https://pokeapi.co/api/v2/pokemon/${data.results[index - 1].name}`
     );
   }
   await axios
     .all(
-      getArrayTypePokemon.map((endpoint) => axios.get<PokemonForm>(endpoint))
+      getArrayTypePokemon.map((endpoint) => axios.get<PokemonTypes>(endpoint))
     )
     .then((res) => {
       res.map((item) => {
         arrayNewInfo.push(item.data.types);
       });
+    })
+    .catch((err) => {
+      console.log("ERROR", err);
     });
 
   data.results.map((item, index) => {
