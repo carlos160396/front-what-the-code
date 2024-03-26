@@ -2,7 +2,7 @@ import { Pokemons } from "@/interface/Pokemon";
 import styles from "./styles.module.css";
 import { CardPokemon, Search } from "@/components";
 import { Button } from "@nextui-org/react";
-import usePagination from "@/hooks/usePagination";
+import usePagination from "@/components/GridPagination/hooks/usePagination";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { titleCase } from "@/helpers/textTransform";
 

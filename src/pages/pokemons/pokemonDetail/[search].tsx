@@ -10,11 +10,27 @@ import axios from "axios";
 import { PokemonDetail } from "@/interface/PokemonDetail";
 import { InferGetServerSidePropsType } from "next";
 import { LuSearchX } from "react-icons/lu";
+import useAxiosFavorites from "./hooks/useAxiosFavorites";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import { useEffect } from "react";
 
 export default function PokemonDetailPage({
   pokemonDetail,
   search,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { postAddFavorites, response, isFavorite } = useAxiosFavorites(
+    pokemonDetail.id
+  );
+
+  useEffect(() => {
+    if (response && response?.type === "error") toast.error(response.message);
+    else toast.success(response?.message);
+  }, [response]);
+
+  const handleClickFavorites = () => {
+    postAddFavorites(pokemonDetail.id);
+  };
+
   return (
     <DashBoardLayout>
       <section className={styles.container}>
@@ -42,9 +58,24 @@ export default function PokemonDetailPage({
               weight={pokemonDetail.weight}
               imgShinyFront={pokemonDetail?.sprites?.front_shiny}
               imgShinyBack={pokemonDetail?.sprites?.back_shiny}
+              onPressFavorites={(isSelectFavorite) => handleClickFavorites()}
+              initIsFavorite={isFavorite}
             />
           </div>
         )}
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+          theme="colored"
+          transition={Bounce}
+        />
       </section>
     </DashBoardLayout>
   );

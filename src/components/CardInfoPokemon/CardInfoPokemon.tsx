@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardBody,
   CardFooter,
@@ -9,6 +10,8 @@ import {
 import style from "./styles.module.css";
 import Image from "next/image";
 import { titleCase } from "@/helpers/textTransform";
+import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
+import { useEffect, useState } from "react";
 
 interface Props {
   title: string;
@@ -18,6 +21,8 @@ interface Props {
   weight: number;
   imgShinyFront: string;
   imgShinyBack: string;
+  initIsFavorite?: boolean;
+  onPressFavorites?: (isFavorite: boolean) => void;
 }
 
 const CardInfoPokemon = ({
@@ -28,15 +33,45 @@ const CardInfoPokemon = ({
   weight,
   imgShinyFront,
   imgShinyBack,
+  onPressFavorites,
+  initIsFavorite = false,
 }: Props) => {
+  const [isFavorite, setIsFavorite] = useState(initIsFavorite);
+
+  useEffect(() => {
+    setIsFavorite(initIsFavorite);
+  }, [initIsFavorite]);
+
   return (
     <Card className={style.container}>
       <CardHeader className={style["card-header"]}>
-        <h3 className={style.title}>{title}</h3>
+        <div className={style["container-favorites"]}>
+          <h3 className={style.title}>{title}</h3>
+          <Button
+            isIconOnly
+            variant="light"
+            radius="full"
+            onClick={() => {
+              if (!isFavorite) setIsFavorite(!isFavorite);
+              if (onPressFavorites) onPressFavorites(!isFavorite);
+            }}
+          >
+            {isFavorite ? (
+              <IoHeartSharp size={30} color="red" />
+            ) : (
+              <IoHeartOutline size={30} />
+            )}
+          </Button>
+        </div>
+
         <div className={style.badgets}>
           {types.map((item) => {
             const type = titleCase(item.type.name);
-            return <Chip className={style[`badge-${type}`]}>{type}</Chip>;
+            return (
+              <Chip key={item.type.name} className={style[`badge-${type}`]}>
+                {type}
+              </Chip>
+            );
           })}
         </div>
       </CardHeader>
