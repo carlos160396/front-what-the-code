@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 320px;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #566cd6;
+  border-radius: 360px;
+  -webkit-border-radius: 360px;
+  -moz-border-radius: 360px;
+  -ms-border-radius: 360px;
+  -o-border-radius: 360px;
+}

@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: white;
+  width: 256px;
+  border-radius: 16px !important;
+  box-shadow: rgb(86 108 214 / 0.15) 0px 8px 24px !important;
+}
+
+.card-header {
+  padding: 8px 16px 0 16px;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.card-body {
+  padding: 8px;
+  align-items: center;
+  gap: 16px;
+}
+.image {
+  height: 120px;
+  margin-top: 20px;
+}
+.card-footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.badge-Fire {
+  background-color: #f39d40;
+  color: white !important;
+}
+.badge-Grass {
+  color: white !important;
+  background-color: #64a30a;
+}
+.badge-Poison {
+  color: white !important;
+  background-color: #9267af;
+}
+.badge-Flying {
+  color: white !important;
+  background-color: #abc8ff;
+}
+.badge-Electric {
+  color: white !important;
+  background-color: #ffe100;
+}
+.badge-Ground {
+  color: white !important;
+  background-color: #a35615;
+}

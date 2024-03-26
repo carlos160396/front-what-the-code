@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: white;
+  border-radius: 16px !important;
+  width: 256px;
+  min-height: 288px;
+  box-shadow: rgb(86 108 214 / 0.15) 0px 8px 24px !important;
+}
+.card-body {
+  padding: 8px;
+  align-items: center;
+  gap: 16px;
+}
