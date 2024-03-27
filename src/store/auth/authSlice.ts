@@ -30,6 +30,23 @@ const counterSlice = createSlice({
       state.isLoad = true;
     },
 
+    login(state, action: PayloadAction<CounterState>) {
+      localStorage.setItem(
+        LOGIN,
+        JSON.stringify({
+          id: action.payload.id,
+          name: action.payload.name,
+          token: action.payload.token,
+          isLoad: action.payload.isLoad,
+        })
+      );
+
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+      state.token = action.payload.token;
+      state.isLoad = action.payload.isLoad;
+    },
+
     logOut(state) {
       state.id = 0;
       state.name = "";
@@ -37,21 +54,9 @@ const counterSlice = createSlice({
       state.isLoad = false;
       localStorage.removeItem(LOGIN);
     },
-
-    // addOne(state) {
-    //   state.count++;
-    // },
-    // substractOne(state) {
-    //   if (state.count === 0) return;
-    //   state.count--;
-    // },
-    // resetCount(state, action: PayloadAction<number>) {
-    //   if (action.payload < 0) action.payload = 0;
-    //   state.count = action.payload;
-    // },
   },
 });
 
-export const { initiAuthState, logOut } = counterSlice.actions;
+export const { initiAuthState, logOut, login } = counterSlice.actions;
 
 export default counterSlice.reducer;

@@ -37,7 +37,11 @@ const CardPokemon = ({ title, subtitle, icon, types }: Props) => {
         </CardBody>
         <CardFooter className={styles["card-footer"]}>
           {types.map((item) => {
-            return <Chip className={styles[`badge-${item}`]}>{item}</Chip>;
+            return (
+              <Chip key={item} className={styles[`badge-${item}`]}>
+                {item}
+              </Chip>
+            );
           })}
         </CardFooter>
       </Card>

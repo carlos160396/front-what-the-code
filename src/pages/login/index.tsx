@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import { Button, Card, CardBody, CardHeader, Input } from "@nextui-org/react";
@@ -6,11 +6,22 @@ import { MdEmail } from "react-icons/md";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import useLogin from "./hooks/useLogin";
 import { Bounce, ToastContainer } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { useRouter } from "next/navigation";
+import { initiAuthState } from "@/store/auth/authSlice";
 
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [dataLogin, setDataLogin] = useState({ email: "", password: "" });
   const { postLogin } = useLogin();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (auth.isLoad === false) dispatch(initiAuthState());
+    if (auth.token !== "" && auth.isLoad) router.push("/pokemons");
+  }, [auth]);
   return (
     <section className={styles.container}>
       <Image
