@@ -18,10 +18,12 @@ export default function PokemonDetailPage({
   pokemonDetail,
   search,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { postAddFavorites, response, isFavorite } = useAxiosFavorites(
-    pokemonDetail.id
-  );
+  const { postAddFavorites, response, isFavorite, sendIdPokemon } =
+    useAxiosFavorites();
 
+  useEffect(() => {
+    if (pokemonDetail) sendIdPokemon(pokemonDetail.id);
+  }, [pokemonDetail]);
   useEffect(() => {
     if (response && response?.type === "error") toast.error(response.message);
     else toast.success(response?.message);
@@ -63,19 +65,6 @@ export default function PokemonDetailPage({
             />
           </div>
         )}
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover={false}
-          theme="colored"
-          transition={Bounce}
-        />
       </section>
     </DashBoardLayout>
   );
@@ -103,6 +92,7 @@ export async function getServerSideProps({ query }: any) {
     console.log("err", error);
     pokemonDetail = null;
   }
+  // console.log("ID", pokemonDetail);
 
   return {
     props: {

@@ -1,5 +1,10 @@
+import { LOGIN } from "@/constants/constants";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { initiAuthState, logOut } from "@/store/auth/authSlice";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { IoLogoReact } from "react-icons/io5";
 
 export const Sidebar = () => {
@@ -38,7 +43,7 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      {/* SCREEN */}
+      {/* LARGE */}
       <div className="hidden px-4 md:block bg-primary h-screen z-10 text-slate-300 left-0 w-[300px] ">
         {MenuSidebar()}
       </div>
@@ -47,6 +52,13 @@ export const Sidebar = () => {
 };
 
 function MenuSidebar() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector((state) => state.auth);
+  const logout = () => {
+    dispatch(logOut());
+    router.push("/login");
+  };
   return (
     <div className="flex flex-col items-center h-full">
       <div className="flex flex-col mt-32 lg:mt-10 justify-between h-full">
@@ -66,13 +78,16 @@ function MenuSidebar() {
             alt="User avatar"
           />
           <span className="text-lg text-white font-bold uppercase">
-            Carlos de la rosa
+            {auth.name}
           </span>
           <span className="text-md font-semibold">Level 1</span>
           <p className="mt-7">"Work hard on your test"</p>
         </div>
 
-        <Button className="w-full bg-[#7789DF] text-white uppercase rounded-md mb-10">
+        <Button
+          className="w-full bg-[#7789DF] text-white uppercase rounded-md mb-10"
+          onClick={logout}
+        >
           <Image
             height={50}
             width={20}

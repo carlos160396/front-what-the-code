@@ -19,9 +19,6 @@ const DashboardPage = ({
     <DashBoardLayout>
       <div className="p-10 h-screen">
         <GridPagination pokemons={pokemons} />
-        {/* <CardImgPokemon />
-        <CardInfoPokemon />
-        <CardInfoPokemon /> */}
       </div>
     </DashBoardLayout>
   );
